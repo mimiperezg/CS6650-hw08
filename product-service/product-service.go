@@ -62,6 +62,13 @@ func (s *productStore) put(p Product) {
 }
 
 func main() {
+	// open database connection
+	db, err := openDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
 	router := setupRouter(newProductStore())
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
