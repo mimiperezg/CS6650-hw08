@@ -35,24 +35,24 @@ paths:
             format: int32
             minimum: 1
       responses:
-        '200':
+        "200":
           description: Product found successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
-        '404':
+                $ref: "#/components/schemas/Product"
+        "404":
           description: Product not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /products/{productId}/details:
     post:
@@ -75,28 +75,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: "#/components/schemas/Product"
       responses:
-        '204':
+        "204":
           description: Product details added successfully
-        '400':
+        "400":
           description: Invalid input data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Product not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   # Shopping Cart Service Endpoints
   /shopping-carts:
@@ -121,7 +121,7 @@ paths:
                   minimum: 1
                   description: Unique identifier for the customer
       responses:
-        '201':
+        "201":
           description: Shopping cart created successfully
           content:
             application/json:
@@ -132,18 +132,79 @@ paths:
                     type: integer
                     format: int32
                     description: Unique identifier for the created shopping cart
-        '400':
+        "400":
           description: Invalid input data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+  /shopping-carts/{shoppingCartId}:
+    get:
+      tags:
+        - Shopping Cart
+      summary: Get shopping cart by ID
+      description: Retrieve a shopping cart with all its items
+      operationId: getShoppingCart
+      parameters:
+        - name: shoppingCartId
+          in: path
+          required: true
+          description: Unique identifier for the shopping cart
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+      responses:
+        "200":
+          description: Shopping cart found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shopping_cart_id:
+                    type: integer
+                    format: int32
+                    description: Unique identifier for the shopping cart
+                  customer_id:
+                    type: integer
+                    format: int32
+                    description: Unique identifier for the customer
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: integer
+                          format: int32
+                        quantity:
+                          type: integer
+                          format: int32
+        "400":
+          description: Invalid shopping cart ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Shopping cart not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /shopping-carts/{shoppingCartId}/items:
     post:
@@ -182,26 +243,26 @@ paths:
                   minimum: 1
                   description: Number of items to add
       responses:
-        '204':
+        "204":
           description: Items added to cart successfully
-        '400':
+        "400":
           description: Invalid input data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Shopping cart or product not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /shopping-carts/{shoppingCartId}/checkout:
     post:
@@ -220,7 +281,7 @@ paths:
             format: int32
             minimum: 1
       responses:
-        '200':
+        "200":
           description: Checkout processed successfully
           content:
             application/json:
@@ -231,24 +292,24 @@ paths:
                     type: integer
                     format: int32
                     description: Unique identifier for the created order
-        '400':
+        "400":
           description: Invalid shopping cart state
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Shopping cart not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   # Warehouse Service Endpoints
   /warehouse/reserve:
@@ -279,26 +340,26 @@ paths:
                   minimum: 1
                   description: Quantity to reserve
       responses:
-        '204':
+        "204":
           description: Inventory reserved successfully
-        '400':
+        "400":
           description: Invalid input data or insufficient inventory
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Product not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /warehouse/ship:
     post:
@@ -328,26 +389,26 @@ paths:
                   minimum: 1
                   description: Quantity to ship
       responses:
-        '204':
+        "204":
           description: Product shipped successfully
-        '400':
+        "400":
           description: Invalid input data or insufficient reserved inventory
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Product not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   # Credit Card Service Endpoints
   /payments/checkout:
@@ -369,7 +430,7 @@ paths:
               properties:
                 credit_card_number:
                   type: string
-                  pattern: '^[0-9]{13,19}$'
+                  pattern: "^[0-9]{13,19}$"
                   description: Credit card number (13-19 digits)
                   example: "4111111111111111"
                 shopping_cart_id:
@@ -378,7 +439,7 @@ paths:
                   minimum: 1
                   description: Unique identifier for the shopping cart
       responses:
-        '200':
+        "200":
           description: Payment processed successfully
           content:
             application/json:
@@ -391,30 +452,30 @@ paths:
                   transaction_id:
                     type: string
                     description: Unique transaction identifier
-        '400':
+        "400":
           description: Invalid payment information
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '402':
+                $ref: "#/components/schemas/Error"
+        "402":
           description: Payment declined
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Shopping cart not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
 components:
   schemas:
