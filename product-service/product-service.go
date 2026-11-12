@@ -69,6 +69,11 @@ func main() {
 	}
 	defer db.Close()
 
+	// create tables if they don't exist
+	if err := createTables(db); err != nil {
+		log.Fatal(err)
+	}
+
 	router := setupRouter(newProductStore())
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)

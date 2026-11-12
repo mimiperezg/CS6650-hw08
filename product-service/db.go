@@ -38,3 +38,32 @@ func openDB() (*sql.DB, error) {
 
 	return db, nil
 }
+
+func createTables(db *sql.DB) error {
+	// create carts table
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS carts (
+		id INT PRIMARY KEY AUTO_INCREMENT,
+		customer_id INT NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		INDEX idx_customer_id (customer_id)
+	)`)
+	if err != nil {
+		return fmt.Errorf("failed to create carts table: %w", err)
+	}
+
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS cart_items (
+		cart_id INT NOT NULL,
+		product_id INT NOT NULL,
+		quantity INT NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		PRIMARY KEY (cart_id, product_id), 
+		FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE,
+		CHECK (quantity > 0)
+	)`)
+	if err != nil {
+		return fmt.Errorf("failed to create cart_items table: %w", err)
+	}
+
+	return nil
+
+}
