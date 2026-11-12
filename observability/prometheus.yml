@@ -1,0 +1,9 @@
+global:
+  # Scrape often, so a short Locust run still produces a readable graph.
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: product-service
+    static_configs:
+      # The service's name in docker-compose.yml; /metrics is the default path.
+      - targets: ["product-service:8080"]

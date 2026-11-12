@@ -31,3 +31,20 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Secrets
+.env
+
+# Mac
+.DS_Store
+__MACOSX/
+
+# Compiled Go binary
+product-service/product-service

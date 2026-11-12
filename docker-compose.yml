@@ -1,0 +1,36 @@
+# Runs the Product Service with Prometheus and Grafana, all on this machine.
+#   docker compose up --build
+# Service: http://localhost:8080   Prometheus: http://localhost:9090   Grafana: http://localhost:3000
+services:
+  product-service:
+    build: ./product-service
+    environment:
+      # Release mode stops Gin printing its debug banner between the JSON log lines.
+      GIN_MODE: release
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  prometheus:
+    image: prom/prometheus:v3.15.0
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "127.0.0.1:9090:9090"
+    depends_on:
+      - product-service
+
+  grafana:
+    image: grafana/grafana:13.2.4
+    environment:
+      # Local only: open Grafana without a login, with permission to edit panels.
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/product-service.json
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - prometheus
