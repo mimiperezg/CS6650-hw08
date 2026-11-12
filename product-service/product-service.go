@@ -97,6 +97,7 @@ func setupRouter(store *productStore, carts *cartStore) *gin.Engine {
 	router.POST("/v1/products/:productId/details", store.addProductDetails)
 	router.POST("/v1/shopping-carts", carts.createCart)
 	router.GET("/v1/shopping-carts/:id", carts.getCart)
+	router.POST("/v1/shopping-carts/:id/items", carts.addItem)
 	router.GET(metricsPath, gin.WrapH(promhttp.Handler()))
 	return router
 }
