@@ -74,13 +74,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	router := setupRouter(newProductStore())
+	router := setupRouter(newProductStore(), &cartStore{db: db})
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func setupRouter(store *productStore) *gin.Engine {
+func setupRouter(store *productStore, carts *cartStore) *gin.Engine {
 	router := gin.New()
 	// One JSON log line per request, to stdout. On ECS, the awslogs driver
 	// sends stdout to CloudWatch, where Logs Insights parses the JSON fields.
@@ -95,6 +95,7 @@ func setupRouter(store *productStore) *gin.Engine {
 
 	router.GET("/v1/products/:productId", store.getProduct)
 	router.POST("/v1/products/:productId/details", store.addProductDetails)
+	router.POST("/v1/shopping-carts", carts.createCart)
 	router.GET(metricsPath, gin.WrapH(promhttp.Handler()))
 	return router
 }
