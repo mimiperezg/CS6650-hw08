@@ -22,6 +22,13 @@ data "aws_iam_role" "lab_role" {
   name = "LabRole"
 }
 
+# Each data store adds its own env vars here so the MySQL and DynamoDB
+# branches can merge without editing the same lines.
+locals {
+  mysql_env  = {}
+  dynamo_env = {}
+}
+
 module "ecs" {
   source             = "./modules/ecs"
   service_name       = var.service_name
@@ -34,6 +41,7 @@ module "ecs" {
   log_group_name     = module.logging.log_group_name
   ecs_count          = var.ecs_count
   region             = var.aws_region
+  environment        = merge(local.mysql_env, local.dynamo_env)
 }
 
 
