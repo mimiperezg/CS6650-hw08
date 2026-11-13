@@ -68,8 +68,8 @@ resource "docker_image" "app" {
   name = "${module.ecr.repository_url}:latest"
 
   build {
-    # relative path from terraform/ → product-service/
-    context = "../product-service"
+    # relative path from terraform/ → the app folder (var.app_dir)
+    context = "../${var.app_dir}"
     platform = "linux/amd64"
     # Dockerfile defaults to "Dockerfile" in that context
   }

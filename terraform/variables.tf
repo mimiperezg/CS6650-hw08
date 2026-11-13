@@ -15,6 +15,14 @@ variable "service_name" {
   default = "CS6650L2"
 }
 
+# Folder (relative to the repo root) whose Dockerfile builds the image ECS
+# runs. Lets the MySQL and DynamoDB versions of the service live in separate
+# folders and be deployed on the same infrastructure.
+variable "app_dir" {
+  type    = string
+  default = "product-service"
+}
+
 variable "container_port" {
   type    = number
   default = 8080
