@@ -63,6 +63,22 @@ Replace `ProductFastHttpUser` with `ProductHttpUser` to use the standard client.
 | `--csv results` | Also save the stats to `results_stats.csv` and related files |
 | `--html report.html` | Also save an HTML report with charts |
 
+## Shopping cart load
+
+[`cartfile.py`](cartfile.py) simulates shoppers. Each `CartUser`:
+
+- creates a cart with `POST /v1/shopping-carts` (expects `201`),
+- adds products to it with `POST /v1/shopping-carts/{id}/items` (expects `204`), and
+- reads it back with `GET /v1/shopping-carts/{id}` (expects `200` and the same `shopping_cart_id`).
+
+Adding and reading are equally likely. After 50 distinct products, the largest cart the service must handle, the user starts a new cart. If creating a cart fails, the user retries the create rather than calling the other endpoints with no cart ID.
+
+It uses `FastHttpUser`, so one laptop can drive 100 users. Run it the same way, naming the file:
+
+```bash
+locust -f cartfile.py CartUser --host http://<HOST>:8080 --headless -u 100 -r 10 -t 4m
+```
+
 ## Reading the results
 
 | Column | Meaning |

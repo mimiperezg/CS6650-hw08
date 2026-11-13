@@ -48,3 +48,7 @@ __MACOSX/
 
 # Compiled Go binary
 product-service/product-service
+
+# Python virtual environments and bytecode
+.venv/
+__pycache__/
