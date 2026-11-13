@@ -57,3 +57,36 @@ resource "aws_security_group" "db" {
     description     = "MySQL from ECS tasks"
   }
 }
+
+# Kept out of tfvars and git. override_special drops characters RDS rejects
+# ('/', '@', '"', ' ') and ones that could confuse the Go MySQL DSN parser.
+resource "random_password" "db" {
+  length           = 20
+  special          = true
+  override_special = "!#%^*-_=+"
+}
+
+resource "aws_db_instance" "this" {
+  identifier     = "${lower(var.service_name)}-mysql"
+  engine         = "mysql"
+  engine_version = "8.0"
+  instance_class = "db.t3.micro"
+
+  allocated_storage = 20
+  storage_type      = "gp2"
+
+  db_name  = var.db_name
+  username = var.db_username
+  password = random_password.db.result
+
+  db_subnet_group_name   = aws_db_subnet_group.this.name
+  vpc_security_group_ids = [aws_security_group.db.id]
+  publicly_accessible    = false
+  multi_az               = false
+
+  # Assignment settings: tear down cleanly with terraform destroy.
+  skip_final_snapshot     = true
+  deletion_protection     = false
+  backup_retention_period = 0
+  apply_immediately       = true
+}

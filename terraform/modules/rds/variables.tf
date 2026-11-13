@@ -21,3 +21,15 @@ variable "ecs_security_group_id" {
   type        = string
   description = "Security group of the ECS tasks; the only source allowed to reach MySQL"
 }
+
+variable "db_name" {
+  type        = string
+  default     = "shopping"
+  description = "Initial database created on the instance"
+}
+
+variable "db_username" {
+  type        = string
+  default     = "admin"
+  description = "Master username"
+}
