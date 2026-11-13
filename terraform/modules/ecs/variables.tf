@@ -49,6 +49,12 @@ variable "region" {
   description = "AWS region (for awslogs driver)"
 }
 
+variable "environment" {
+  type        = map(string)
+  default     = {}
+  description = "Environment variables passed to the container"
+}
+
 variable "cpu" {
   type        = string
   default     = "256"

@@ -23,6 +23,8 @@ resource "aws_ecs_task_definition" "this" {
       containerPort = var.container_port
     }]
 
+    environment = [for name, value in var.environment : { name = name, value = value }]
+
     logConfiguration = {
       logDriver = "awslogs"
       options = {
