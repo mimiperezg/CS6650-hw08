@@ -82,7 +82,18 @@ The user counts (10, 50, 100) and the spawn rate (10 users per second) are fixed
 
 ## Using the scripts for DynamoDB
 
-The DynamoDB service uses the same API, so the scripts and the Locust scenario work unchanged. Deploy the stack with the service set to use DynamoDB, then name the results after the store:
+The DynamoDB service uses the same API, so the scripts and the Locust scenario work unchanged.
+
+The Terraform variable `app_dir` picks which folder's Dockerfile builds the image ECS runs (default `product-service`). Terraform doesn't notice when only the source changes, so switching apps needs a forced rebuild and a task restart, from `terraform/`:
+
+```bash
+terraform apply -var app_dir=<dynamodb-app-folder> \
+  -replace=docker_image.app -replace=docker_registry_image.app
+aws ecs update-service --region "$(terraform output -raw aws_region)" \
+  --cluster CS6650L2-cluster --service CS6650L2 --force-new-deployment
+```
+
+Switch back the same way with `-var app_dir=product-service`. Once the new task is running, name the results after the store:
 
 ```bash
 STORE=dynamodb scripts/run-load.sh 1
