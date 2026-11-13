@@ -41,3 +41,19 @@ resource "aws_db_subnet_group" "this" {
   name       = "${lower(var.service_name)}-db"
   subnet_ids = aws_subnet.private[*].id
 }
+
+# Only the ECS tasks' security group may open MySQL connections. No egress
+# rules: the database never initiates connections.
+resource "aws_security_group" "db" {
+  name        = "${var.service_name}-db-sg"
+  description = "Allow MySQL from ECS tasks only"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [var.ecs_security_group_id]
+    description     = "MySQL from ECS tasks"
+  }
+}

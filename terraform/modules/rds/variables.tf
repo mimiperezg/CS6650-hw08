@@ -16,3 +16,8 @@ variable "private_subnet_cidrs" {
   default     = ["172.31.96.0/24", "172.31.97.0/24"]
   description = "CIDRs for the private DB subnets, one per AZ (RDS needs at least two AZs)"
 }
+
+variable "ecs_security_group_id" {
+  type        = string
+  description = "Security group of the ECS tasks; the only source allowed to reach MySQL"
+}
