@@ -7,3 +7,13 @@ output "ecs_service_name" {
   description = "Name of the running ECS service"
   value       = module.ecs.service_name
 }
+
+output "rds_address" {
+  description = "Private hostname of the MySQL instance"
+  value       = module.rds.address
+}
+
+output "aws_region" {
+  description = "Region everything was deployed to"
+  value       = var.aws_region
+}

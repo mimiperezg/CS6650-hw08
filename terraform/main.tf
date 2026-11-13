@@ -22,6 +22,30 @@ data "aws_iam_role" "lab_role" {
   name = "LabRole"
 }
 
+module "rds" {
+  source                = "./modules/rds"
+  service_name          = var.service_name
+  vpc_id                = module.network.vpc_id
+  ecs_security_group_id = module.network.security_group_id
+}
+
+# Names match what product-service/db.go reads.
+locals {
+  mysql_env = {
+    DB_HOST     = module.rds.address
+    DB_PORT     = tostring(module.rds.port)
+    DB_USER     = module.rds.username
+    DB_PASSWORD = module.rds.password
+    DB_NAME     = module.rds.db_name
+  }
+}
+
+# Each data store keeps its env vars in its own locals block so the MySQL
+# and DynamoDB branches don't edit the same lines.
+locals {
+  dynamo_env = {}
+}
+
 module "ecs" {
   source             = "./modules/ecs"
   service_name       = var.service_name
@@ -34,6 +58,7 @@ module "ecs" {
   log_group_name     = module.logging.log_group_name
   ecs_count          = var.ecs_count
   region             = var.aws_region
+  environment        = merge(local.mysql_env, local.dynamo_env)
 }
 
 
