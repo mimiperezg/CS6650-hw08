@@ -3,6 +3,11 @@ output "subnet_ids" {
   value       = data.aws_subnets.default.ids
 }
 
+output "vpc_id" {
+  description = "ID of the default VPC"
+  value       = data.aws_vpc.default.id
+}
+
 output "security_group_id" {
   description = "Security group ID for ECS"
   value       = aws_security_group.this.id
