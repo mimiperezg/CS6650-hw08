@@ -38,3 +38,11 @@ variable "log_retention_days" {
   type    = number
   default = 7
 }
+
+# DynamoDB read mode for GET /shopping-carts/{id}: false = normal
+# (eventually consistent) read, true = strongly consistent read.
+# Flip with: terraform apply -var consistent_read=true
+variable "consistent_read" {
+  type    = bool
+  default = false
+}
