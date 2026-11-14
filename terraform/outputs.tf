@@ -17,3 +17,8 @@ output "aws_region" {
   description = "Region everything was deployed to"
   value       = var.aws_region
 }
+
+output "dynamodb_table_name" {
+  description = "Name of the DynamoDB shopping carts table"
+  value       = module.dynamodb.table_name
+}
