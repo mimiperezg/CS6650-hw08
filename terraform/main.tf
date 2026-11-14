@@ -42,8 +42,16 @@ locals {
 
 # Each data store keeps its env vars in its own locals block so the MySQL
 # and DynamoDB branches don't edit the same lines.
+module "dynamodb" {
+  source = "./modules/dynamodb"
+}
+
+# Names the DynamoDB version of the service reads.
 locals {
-  dynamo_env = {}
+  dynamo_env = {
+    DYNAMODB_TABLE = module.dynamodb.table_name
+    AWS_REGION     = var.aws_region
+  }
 }
 
 module "ecs" {
@@ -69,7 +77,7 @@ resource "docker_image" "app" {
 
   build {
     # relative path from terraform/ → the app folder (var.app_dir)
-    context = "../${var.app_dir}"
+    context  = "../${var.app_dir}"
     platform = "linux/amd64"
     # Dockerfile defaults to "Dockerfile" in that context
   }
