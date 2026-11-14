@@ -1,0 +1,11 @@
+run:        1
+store:      mysql
+host:       http://52.207.189.107:8080
+commit:     b09dde2
+locust:     locust 2.46.7 from /Users/antonmenchaca/distributed-systems/CS6650-hw08/locust/.venv/lib/python3.13/site-packages/locust (Python 3.13.13)
+user class: CartUser (locust/cartfile.py)
+levels:     10 50 100 users, spawn rate 10/s, 4m each, 60s apart
+
+u10: 2026-11-13T23:15:05Z to 2026-11-13T23:19:05Z (locust exit 0)
+u50: 2026-11-13T23:20:05Z to 2026-11-13T23:24:05Z (locust exit 0)
+u100: 2026-11-13T23:25:05Z to 2026-11-13T23:29:06Z (locust exit 0)
