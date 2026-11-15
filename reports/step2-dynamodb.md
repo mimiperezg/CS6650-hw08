@@ -127,45 +127,64 @@ The DynamoDB version (`dynamo-service/`) implements the same three endpoints as 
 
 **Required runs.** Each team ran the test once against their own deployment:
 
-| | MySQL (Step I, Anton) | DynamoDB (Dhruv) |
-|---|---|---|
-| Time (UTC) | 2026-11-13 23:12:53 | 2026-11-14 22:11:17 |
-| Success | 150 / 150 | 150 / 150 |
-| Avg / p50 / p95 / p99 (ms) | 21.0 / 20.2 / 29.2 / 33.4 | 28.5 / 26.7 / 29.6 / 32.9 |
-| Create / add / get average (ms) | 21.0 / 22.6 / 19.6 | 32.9 / 27.5 / 25.2 |
+**How to read the tables.** Response times are measured by the test script on the laptop, from sending a request to receiving the answer. "All 150 requests" mixes the three operations together. p50 is the median (half the requests were faster); p95 and p99 mean 95% and 99% of requests were faster than that value, so they show the slowest few requests.
+
+| | MySQL (Step I, Anton) | DynamoDB (Dhruv) | DynamoDB − MySQL (ms) |
+|---|---|---|---|
+| Time (UTC) | 2026-11-13 23:12:53 | 2026-11-14 22:11:17 | |
+| Successful requests | 150 / 150 | 150 / 150 | |
+| All 150 requests: average (ms) | 21.0 | 28.5 | +7.5 |
+| All 150 requests: p50 (ms) | 20.2 | 26.7 | +6.5 |
+| All 150 requests: p95 (ms) | 29.2 | 29.6 | +0.4 |
+| All 150 requests: p99 (ms) | 33.4 | 32.9 | −0.5 |
+| Create cart only: average (ms) | 21.0 | 32.9 | +11.9 |
+| Add item only: average (ms) | 22.6 | 27.5 | +4.9 |
+| Get cart only: average (ms) | 19.6 | 25.2 | +5.6 |
+
+A positive difference means DynamoDB was slower. These differences are not highlighted because the two runs used different networks (see below).
 
 Files: `results/mysql_test_results.json`, `results/dynamodb_test_results.json`
 
-**Problem with comparing these two runs.** The test sends one request at a time, so each response time is mostly the network trip between the laptop and AWS. These two runs came from different laptops on different networks, so the 7.5 ms difference could be the networks rather than the databases.
+**Problem with comparing these two runs.** The test sends one request at a time, so each response time is mostly the network trip between the laptop and AWS. These two runs came from different laptops on different networks, so the 7.5 ms difference in average could be the networks rather than the databases.
 
 **Same-laptop re-run [Khush].** To remove that difference, both versions were deployed one after the other on the same infrastructure in one AWS account and tested from the same laptop, 3 minutes apart:
 
-| | MySQL | DynamoDB |
-|---|---|---|
-| Time (UTC) | 2026-11-14 23:55:12 | 2026-11-14 23:58:40 |
-| Success | 150 / 150 | 150 / 150 |
-| Avg / p50 / p95 / p99 (ms) | 47.2 / 46.2 / 59.7 / 76.7 | 49.9 / 48.9 / 62.7 / 93.7 |
-| Create / add / get average (ms) | 46.9 / 51.6 / 43.1 | 55.1 / 51.7 / 43.0 |
+| | MySQL | DynamoDB | DynamoDB − MySQL (ms) |
+|---|---|---|---|
+| Time (UTC) | 2026-11-14 23:55:12 | 2026-11-14 23:58:40 | |
+| Successful requests | 150 / 150 | 150 / 150 | |
+| **All 150 requests: average (ms)** | **47.2** | **49.9** | **+2.7** |
+| All 150 requests: p50 (ms) | 46.2 | 48.9 | +2.7 |
+| All 150 requests: p95 (ms) | 59.7 | 62.7 | +3.0 |
+| All 150 requests: p99 (ms) | 76.7 | 93.7 | +17.0 (two slow requests, see below) |
+| **Create cart only: average (ms)** | **46.9** | **55.1** | **+8.2** |
+| Add item only: average (ms) | 51.6 | 51.7 | +0.1 |
+| **Get cart only: average (ms)** | **43.1** | **43.0** | **−0.1** |
 
 Files: `results/same-client/mysql_same_client.json`, `results/same-client/dynamodb_same_client.json`
 
 - **With the network held constant, the two databases perform about the same:** 2.7 ms apart on average, and get cart is identical (43.1 vs 43.0 ms).
+- **Why they are nearly identical.** Almost all of each response time is the trip between the laptop and AWS (about 45 ms here). The database's own work is only a few milliseconds: CloudWatch measured 1.3 to 3.5 ms inside DynamoDB per request. Even though MySQL answers get cart with a JOIN across two tables and DynamoDB with a single key lookup, at this data size both finish in a few milliseconds, so swapping the database barely changes the total a user waits.
+- **What the p99 shows.** With 150 requests, p99 is set by the two or three slowest requests. For DynamoDB those were the first request of the run (186 ms) and one other create (119 ms); for MySQL the first request (100 ms) and one add (81 ms). It reflects a handful of slow requests, not typical behavior.
 - **Create cart is the only noticeably slower DynamoDB operation** (55.1 vs 46.9 ms average). Two things explain it:
   - **The first request of every run is slow**, and it is always a create: 186 ms for DynamoDB and 100 ms for MySQL in this run (310 ms and 42 ms in the required runs). The first request has to open a new connection from the laptop to the app, and in the DynamoDB version the app also opens its first secure (HTTPS) connection to DynamoDB. Without that first request, create averages 52.4 vs 45.8 ms.
   - **The remaining ~5 ms gap is the write itself:** a create is a conditional PutItem, which took 3.5 ms inside DynamoDB (the slowest of the three operations, section 2.2), plus the trip from the app to DynamoDB's endpoint. MySQL's insert travels over an already-open pooled connection inside the same private network.
 - **All times are about 20 to 25 ms higher than the required runs** because this laptop's network to AWS is slower, which confirms that the network dominates these numbers.
 - **The database's own time is small.** CloudWatch measured 1.3 to 3.5 ms inside DynamoDB per request during Dhruv's run (section 2.2), against 25 to 33 ms end to end.
+- **What this test does not show.** The required test sends one request at a time, so it never puts either database under many simultaneous users. That is where we would expect them to differ (not tested here): MySQL is limited by its connection pool (25 connections) and a fixed instance size, while DynamoDB on-demand scales by itself. This is discussed in Step III Part 2.
 
 ### 2.2 Evidence the partition strategy works under load [Khush]
 
 **What we wanted to show.** A good partition key spreads requests evenly over many keys, so no single partition is overloaded (a hot partition) and requests are never throttled. CloudWatch was monitored during Dhruv's 150-op run (2026-11-14, 17:09 to 17:14 EST, one data point per minute).
+
+**Why this matters.** DynamoDB stores a table across many partitions (storage servers) and picks the partition for each item by hashing its partition key. Each partition can only serve a limited number of requests per second. If many requests hit the same key at once, its partition is overloaded and DynamoDB starts rejecting requests (throttling) while other partitions sit idle. Even load across keys means the table can grow to millions of carts and simply spread them over more partitions.
 
 **Contributor Insights** is a DynamoDB feature that records which partition keys receive the most traffic.
 
 | Measurement | Result |
 |---|---|
 | Distinct carts accessed | **50** |
-| Load on the 25 busiest carts | **Exactly the same for every cart** |
+| Load per cart | **Identical for every cart** (25 busiest checked) |
 | Throttling events | **0** |
 | Latency inside DynamoDB: get / create / add item | **1.29 / 3.54 / 3.26 ms** (50 requests each) |
 | Capacity used: read / write units | 25 / 100 |
@@ -204,7 +223,7 @@ It ran once with normal reads and once with strongly consistent reads (the app r
 | Create then read: stale | 0 / 50 | 0 / 50 |
 | Add then read: stale | 0 / 50 | 0 / 50 |
 | 10 clients x 10 adds: final quantity | 100 / 100, 0 lost | 100 / 100, 0 lost |
-| Read capacity used (CloudWatch) | 52 units for 104 reads | 105 units for about 105 reads |
+| Read capacity used (CloudWatch) | 52 units for 104 reads (0.5 per read) | 105 units for about 105 reads (1 per read): **2x the cost** |
 
 **Why a second test was needed.** Test 1 saw no stale reads at all. A copy that is behind usually catches up within milliseconds, while each request from the laptop takes about 25 to 55 ms to reach AWS. By the time the read arrived, the copies had already caught up, so Test 1 could not show how often stale reads actually occur.
 
@@ -231,6 +250,12 @@ The strong-read run is the control: it must show 0, which confirms the test only
 - **Concurrent updates are always safe.** Every add is a single atomic update of one item, so 10 clients updating the same cart at once never lost an update. This holds regardless of read mode.
 
 Files: `consistency/results/dynamo-eventual.json`, `dynamo-strong.json`, `direct-eventual.json`, `direct-strong.json`
+
+### 2.4 What the results mean
+
+- **Speed is a tie for this workload.** Measured from the same laptop, MySQL and DynamoDB were within 3 ms of each other, because network time dwarfs the database's own time. For shopping carts the choice should be made on data model, scaling and operations, not on response time.
+- **The key design spreads load evenly.** Every cart received identical load and nothing was throttled, which is what lets the table scale to millions of carts.
+- **Eventual consistency is a non-issue for carts.** Stale reads were rare (1 in 500) and lasted one read; where an app must see its own write, a strongly consistent read removes them at twice the read cost.
 
 ## 3. Implementation Notes [Khush]
 
