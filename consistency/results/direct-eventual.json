@@ -1,0 +1,33 @@
+{
+  "mode": "eventual",
+  "rounds_per_test": 500,
+  "started": "2026-11-14T23:03:51.804565Z",
+  "finished": "2026-11-14T23:10:17.384811Z",
+  "test_a_new_item": {
+    "rounds": 500,
+    "stale_reads": 1,
+    "stale_percent": 0.2,
+    "max_ms_until_consistent": 7.936,
+    "avg_write_ms": 199.18,
+    "avg_read_ms": 185.72,
+    "stale_details": [
+      {
+        "round": 138,
+        "cart_id": 1853621040,
+        "became_consistent": true,
+        "retries": 1,
+        "ms_until_consistent": 7.936,
+        "timestamp": "2026-11-14T23:04:44.203927Z"
+      }
+    ]
+  },
+  "test_b_update": {
+    "rounds": 500,
+    "stale_reads": 0,
+    "stale_percent": 0.0,
+    "max_ms_until_consistent": 0,
+    "avg_write_ms": 191.96,
+    "avg_read_ms": 192.25,
+    "stale_details": []
+  }
+}

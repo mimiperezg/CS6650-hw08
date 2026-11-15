@@ -1,0 +1,24 @@
+{
+  "mode": "strong",
+  "rounds_per_test": 500,
+  "started": "2026-11-14T23:11:58.931934Z",
+  "finished": "2026-11-14T23:18:18.883104Z",
+  "test_a_new_item": {
+    "rounds": 500,
+    "stale_reads": 0,
+    "stale_percent": 0.0,
+    "max_ms_until_consistent": 0,
+    "avg_write_ms": 192.33,
+    "avg_read_ms": 186.85,
+    "stale_details": []
+  },
+  "test_b_update": {
+    "rounds": 500,
+    "stale_reads": 0,
+    "stale_percent": 0.0,
+    "max_ms_until_consistent": 0,
+    "avg_write_ms": 196.1,
+    "avg_read_ms": 184.58,
+    "stale_details": []
+  }
+}

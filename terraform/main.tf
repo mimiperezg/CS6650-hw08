@@ -51,6 +51,8 @@ locals {
   dynamo_env = {
     DYNAMODB_TABLE = module.dynamodb.table_name
     AWS_REGION     = var.aws_region
+    # true = GetItem always returns the latest data (strong read)
+    CONSISTENT_READ = tostring(var.consistent_read)
   }
 }
 
