@@ -150,7 +150,9 @@ Files: `results/mysql_test_results.json`, `results/dynamodb_test_results.json`
 Files: `results/same-client/mysql_same_client.json`, `results/same-client/dynamodb_same_client.json`
 
 - **With the network held constant, the two databases perform about the same:** 2.7 ms apart on average, and get cart is identical (43.1 vs 43.0 ms).
-- **Create cart is the only noticeably slower DynamoDB operation** (55.1 vs 46.9 ms). Its average includes one slow outlier (186 ms); the reason was not investigated.
+- **Create cart is the only noticeably slower DynamoDB operation** (55.1 vs 46.9 ms average). Two things explain it:
+  - **The first request of every run is slow**, and it is always a create: 186 ms for DynamoDB and 100 ms for MySQL in this run (310 ms and 42 ms in the required runs). The first request has to open a new connection from the laptop to the app, and in the DynamoDB version the app also opens its first secure (HTTPS) connection to DynamoDB. Without that first request, create averages 52.4 vs 45.8 ms.
+  - **The remaining ~5 ms gap is the write itself:** a create is a conditional PutItem, which took 3.5 ms inside DynamoDB (the slowest of the three operations, section 2.2), plus the trip from the app to DynamoDB's endpoint. MySQL's insert travels over an already-open pooled connection inside the same private network.
 - **All times are about 20 to 25 ms higher than the required runs** because this laptop's network to AWS is slower, which confirms that the network dominates these numbers.
 - **The database's own time is small.** CloudWatch measured 1.3 to 3.5 ms inside DynamoDB per request during Dhruv's run (section 2.2), against 25 to 33 ms end to end.
 
