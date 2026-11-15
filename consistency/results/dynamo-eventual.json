@@ -1,0 +1,839 @@
+{
+  "label": "dynamo-eventual",
+  "target": "http://52.7.169.228:8080",
+  "started": "2026-11-14T22:18:11.907409Z",
+  "finished": "2026-11-14T22:18:23.366632Z",
+  "test1_create_then_get": {
+    "summary": {
+      "rounds": 50,
+      "stale_reads": 0,
+      "never_consistent": 0,
+      "max_ms_until_consistent": 0
+    },
+    "records": [
+      {
+        "round": 1,
+        "cart_id": 620210485,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:11.907409Z"
+      },
+      {
+        "round": 2,
+        "cart_id": 1197226603,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:11.996949Z"
+      },
+      {
+        "round": 3,
+        "cart_id": 1452732575,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.079930Z"
+      },
+      {
+        "round": 4,
+        "cart_id": 985382144,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.175982Z"
+      },
+      {
+        "round": 5,
+        "cart_id": 84039948,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.297369Z"
+      },
+      {
+        "round": 6,
+        "cart_id": 108779974,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.398273Z"
+      },
+      {
+        "round": 7,
+        "cart_id": 479424583,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.485060Z"
+      },
+      {
+        "round": 8,
+        "cart_id": 1739070278,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.582198Z"
+      },
+      {
+        "round": 9,
+        "cart_id": 606454082,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.672547Z"
+      },
+      {
+        "round": 10,
+        "cart_id": 1923036389,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.772101Z"
+      },
+      {
+        "round": 11,
+        "cart_id": 1393851844,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.867679Z"
+      },
+      {
+        "round": 12,
+        "cart_id": 1360684349,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:12.987110Z"
+      },
+      {
+        "round": 13,
+        "cart_id": 1378906342,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.091760Z"
+      },
+      {
+        "round": 14,
+        "cart_id": 2018054392,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.178781Z"
+      },
+      {
+        "round": 15,
+        "cart_id": 266794291,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.276648Z"
+      },
+      {
+        "round": 16,
+        "cart_id": 116751321,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.365881Z"
+      },
+      {
+        "round": 17,
+        "cart_id": 741246363,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.456666Z"
+      },
+      {
+        "round": 18,
+        "cart_id": 2072996417,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.552513Z"
+      },
+      {
+        "round": 19,
+        "cart_id": 30278345,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.640074Z"
+      },
+      {
+        "round": 20,
+        "cart_id": 1351753330,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.730044Z"
+      },
+      {
+        "round": 21,
+        "cart_id": 283189962,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.815004Z"
+      },
+      {
+        "round": 22,
+        "cart_id": 67539704,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.910208Z"
+      },
+      {
+        "round": 23,
+        "cart_id": 1458095270,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:13.995110Z"
+      },
+      {
+        "round": 24,
+        "cart_id": 1660029272,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.085157Z"
+      },
+      {
+        "round": 25,
+        "cart_id": 667755833,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.175725Z"
+      },
+      {
+        "round": 26,
+        "cart_id": 532133566,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.270017Z"
+      },
+      {
+        "round": 27,
+        "cart_id": 929267310,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.378847Z"
+      },
+      {
+        "round": 28,
+        "cart_id": 960526916,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.460104Z"
+      },
+      {
+        "round": 29,
+        "cart_id": 291431182,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.551207Z"
+      },
+      {
+        "round": 30,
+        "cart_id": 393188088,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.636185Z"
+      },
+      {
+        "round": 31,
+        "cart_id": 579294353,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.725976Z"
+      },
+      {
+        "round": 32,
+        "cart_id": 2091193503,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.816005Z"
+      },
+      {
+        "round": 33,
+        "cart_id": 848759650,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.906094Z"
+      },
+      {
+        "round": 34,
+        "cart_id": 972763188,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:14.995801Z"
+      },
+      {
+        "round": 35,
+        "cart_id": 1696843309,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.080540Z"
+      },
+      {
+        "round": 36,
+        "cart_id": 821158388,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.161062Z"
+      },
+      {
+        "round": 37,
+        "cart_id": 1823990745,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.250349Z"
+      },
+      {
+        "round": 38,
+        "cart_id": 247014465,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.340074Z"
+      },
+      {
+        "round": 39,
+        "cart_id": 493247096,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.450269Z"
+      },
+      {
+        "round": 40,
+        "cart_id": 1942260374,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.558254Z"
+      },
+      {
+        "round": 41,
+        "cart_id": 52867456,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.651477Z"
+      },
+      {
+        "round": 42,
+        "cart_id": 1664760127,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.747065Z"
+      },
+      {
+        "round": 43,
+        "cart_id": 1747356384,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.845313Z"
+      },
+      {
+        "round": 44,
+        "cart_id": 1841993603,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:15.945505Z"
+      },
+      {
+        "round": 45,
+        "cart_id": 503755768,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.035503Z"
+      },
+      {
+        "round": 46,
+        "cart_id": 1302946616,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.125600Z"
+      },
+      {
+        "round": 47,
+        "cart_id": 1886319021,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.239523Z"
+      },
+      {
+        "round": 48,
+        "cart_id": 736633537,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.325998Z"
+      },
+      {
+        "round": 49,
+        "cart_id": 573878847,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.419976Z"
+      },
+      {
+        "round": 50,
+        "cart_id": 403139894,
+        "first_get_status": 200,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.500838Z"
+      }
+    ]
+  },
+  "test2_add_then_get": {
+    "summary": {
+      "rounds": 50,
+      "stale_reads": 0,
+      "never_consistent": 0,
+      "max_ms_until_consistent": 0
+    },
+    "records": [
+      {
+        "round": 1,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 1,
+        "first_get_quantity": 1,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.726233Z"
+      },
+      {
+        "round": 2,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 2,
+        "first_get_quantity": 2,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.821772Z"
+      },
+      {
+        "round": 3,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 3,
+        "first_get_quantity": 3,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:16.906832Z"
+      },
+      {
+        "round": 4,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 4,
+        "first_get_quantity": 4,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.010196Z"
+      },
+      {
+        "round": 5,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 5,
+        "first_get_quantity": 5,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.110259Z"
+      },
+      {
+        "round": 6,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 6,
+        "first_get_quantity": 6,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.205266Z"
+      },
+      {
+        "round": 7,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 7,
+        "first_get_quantity": 7,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.320348Z"
+      },
+      {
+        "round": 8,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 8,
+        "first_get_quantity": 8,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.421678Z"
+      },
+      {
+        "round": 9,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 9,
+        "first_get_quantity": 9,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.523444Z"
+      },
+      {
+        "round": 10,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 10,
+        "first_get_quantity": 10,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.620059Z"
+      },
+      {
+        "round": 11,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 11,
+        "first_get_quantity": 11,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.719907Z"
+      },
+      {
+        "round": 12,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 12,
+        "first_get_quantity": 12,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.817389Z"
+      },
+      {
+        "round": 13,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 13,
+        "first_get_quantity": 13,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:17.932351Z"
+      },
+      {
+        "round": 14,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 14,
+        "first_get_quantity": 14,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.029980Z"
+      },
+      {
+        "round": 15,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 15,
+        "first_get_quantity": 15,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.130158Z"
+      },
+      {
+        "round": 16,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 16,
+        "first_get_quantity": 16,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.244962Z"
+      },
+      {
+        "round": 17,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 17,
+        "first_get_quantity": 17,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.342886Z"
+      },
+      {
+        "round": 18,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 18,
+        "first_get_quantity": 18,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.430814Z"
+      },
+      {
+        "round": 19,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 19,
+        "first_get_quantity": 19,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.530129Z"
+      },
+      {
+        "round": 20,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 20,
+        "first_get_quantity": 20,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.615782Z"
+      },
+      {
+        "round": 21,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 21,
+        "first_get_quantity": 21,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.705431Z"
+      },
+      {
+        "round": 22,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 22,
+        "first_get_quantity": 22,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.811766Z"
+      },
+      {
+        "round": 23,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 23,
+        "first_get_quantity": 23,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:18.905247Z"
+      },
+      {
+        "round": 24,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 24,
+        "first_get_quantity": 24,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.017306Z"
+      },
+      {
+        "round": 25,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 25,
+        "first_get_quantity": 25,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.115202Z"
+      },
+      {
+        "round": 26,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 26,
+        "first_get_quantity": 26,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.210366Z"
+      },
+      {
+        "round": 27,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 27,
+        "first_get_quantity": 27,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.320126Z"
+      },
+      {
+        "round": 28,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 28,
+        "first_get_quantity": 28,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.422119Z"
+      },
+      {
+        "round": 29,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 29,
+        "first_get_quantity": 29,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.515234Z"
+      },
+      {
+        "round": 30,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 30,
+        "first_get_quantity": 30,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.605002Z"
+      },
+      {
+        "round": 31,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 31,
+        "first_get_quantity": 31,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.710178Z"
+      },
+      {
+        "round": 32,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 32,
+        "first_get_quantity": 32,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.805304Z"
+      },
+      {
+        "round": 33,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 33,
+        "first_get_quantity": 33,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.895625Z"
+      },
+      {
+        "round": 34,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 34,
+        "first_get_quantity": 34,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:19.979811Z"
+      },
+      {
+        "round": 35,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 35,
+        "first_get_quantity": 35,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.089866Z"
+      },
+      {
+        "round": 36,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 36,
+        "first_get_quantity": 36,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.175945Z"
+      },
+      {
+        "round": 37,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 37,
+        "first_get_quantity": 37,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.275909Z"
+      },
+      {
+        "round": 38,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 38,
+        "first_get_quantity": 38,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.360152Z"
+      },
+      {
+        "round": 39,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 39,
+        "first_get_quantity": 39,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.440255Z"
+      },
+      {
+        "round": 40,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 40,
+        "first_get_quantity": 40,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.526171Z"
+      },
+      {
+        "round": 41,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 41,
+        "first_get_quantity": 41,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.615339Z"
+      },
+      {
+        "round": 42,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 42,
+        "first_get_quantity": 42,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.716777Z"
+      },
+      {
+        "round": 43,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 43,
+        "first_get_quantity": 43,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.805608Z"
+      },
+      {
+        "round": 44,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 44,
+        "first_get_quantity": 44,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.896003Z"
+      },
+      {
+        "round": 45,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 45,
+        "first_get_quantity": 45,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:20.981589Z"
+      },
+      {
+        "round": 46,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 46,
+        "first_get_quantity": 46,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:21.076243Z"
+      },
+      {
+        "round": 47,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 47,
+        "first_get_quantity": 47,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:21.170368Z"
+      },
+      {
+        "round": 48,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 48,
+        "first_get_quantity": 48,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:21.255372Z"
+      },
+      {
+        "round": 49,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 49,
+        "first_get_quantity": 49,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:21.350612Z"
+      },
+      {
+        "round": 50,
+        "cart_id": 72403537,
+        "add_status": 204,
+        "expected_quantity": 50,
+        "first_get_quantity": 50,
+        "stale": false,
+        "timestamp": "2026-11-14T22:18:21.445433Z"
+      }
+    ]
+  },
+  "test3_concurrent_adds": {
+    "cart_id": 269744044,
+    "clients": 10,
+    "adds_per_client": 10,
+    "adds_accepted": 100,
+    "adds_failed": 0,
+    "expected_quantity": 100,
+    "first_read_quantity": 100,
+    "settled_quantity": 100,
+    "lost_updates": 0,
+    "duration_ms": 660.21,
+    "timestamp": "2026-11-14T22:18:23.366226Z"
+  }
+}
